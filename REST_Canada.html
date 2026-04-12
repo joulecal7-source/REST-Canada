@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REST Canada — Refugee Supportive Team</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #C8102E;
+  --red-dark: #9B0C22;
+  --blue: #003087;
+  --blue-light: #0055A4;
+  --gold: #D4A017;
+  --white: #FAFAFA;
+  --gray: #F4F4F4;
+  --dark: #1A1A2E;
+  --text: #2D2D2D;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgba(0,48,135,0.97);
+  backdrop-filter: blur(10px);
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 65px;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo .logo-badge {
+  background: var(--red);
+  color: white;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 18px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  letter-spacing: 2px;
+}
+
+.nav-logo .logo-text {
+  color: white;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.3;
+  max-width: 150px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.nav-links a:hover { background: rgba(255,255,255,0.15); color: white; }
+
+.nav-btn {
+  background: var(--red) !important;
+  color: white !important;
+  padding: 7px 14px !important;
+  border-radius: 4px;
+  font-weight: 600 !important;
+}
+
+.nav-btn:hover { background: var(--red-dark) !important; }
+
+.lang-toggle {
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.4);
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.lang-toggle:hover { background: rgba(255,255,255,0.3); }
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--dark) 0%, var(--blue) 50%, #1a3a7a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 20px 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(200,16,46,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 30%, rgba(212,160,23,0.1) 0%, transparent 50%);
+  animation: pulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.1) rotate(5deg); }
+}
+
+.hero-maple {
+  font-size: 80px;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 800px; }
+
+.hero-tag {
+  display: inline-block;
+  background: rgba(200,16,46,0.8);
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 7vw, 72px);
+  font-weight: 900;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+
+.hero h1 span { color: var(--gold); }
+
+.hero-subtitle {
+  font-size: clamp(14px, 2.5vw, 18px);
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 8px;
+  font-weight: 300;
+}
+
+.hero-corp {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  background: var(--red);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(200,16,46,0.4);
+}
+
+.btn-primary:hover {
+  background: var(--red-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(200,16,46,0.5);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.15);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  border: 1px solid rgba(255,255,255,0.3);
+  transition: all 0.3s;
+}
+
+.btn-secondary:hover {
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  text-align: center;
+  color: white;
+}
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--gold);
+  display: block;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ===== SECTIONS ===== */
+section { padding: 80px 20px; }
+
+.section-tag {
+  display: inline-block;
+  background: var(--red);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.section-title span { color: var(--red); }
+
+.section-subtitle {
+  font-size: 16px;
+  color: #666;
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 50px;
+}
+
+/* ===== MISSION ===== */
+.mission { background: var(--gray); text-align: center; }
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.mission-card {
+  background: white;
+  border-radius: 12px;
+  padding: 32px 24px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  transition: all 0.3s;
+  border-top: 4px solid var(--red);
+}
+
+.mission-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+.mission-icon { font-size: 40px; margin-bottom: 16px; }
+
+.mission-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+
+.mission-card p { font-size: 14px; color: #666; line-height: 1.7; }
+
+/* ===== TEAM ===== */
+.team { background: white; text-align: center; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.team-card {
+  background: var(--gray);
+  border-radius: 12px;
+  padding: 32px 20px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.team-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--red), var(--blue));
+}
+
+.team-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+
+.team-avatar {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--red));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 16px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  color: white;
+}
+
+.team-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.team-role {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--red);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.team-skills {
+  font-size: 12px;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ===== REFUGIES ===== */
+.refugees { background: var(--dark); color: white; text-align: center; }
+.refugees .section-title { color: white; }
+.refugees .section-subtitle { color: rgba(255,255,255,0.6); margin: 0 auto 50px; }
+
+.refugees-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto 40px;
+}
+
+.refugee-card {
+  background: rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 20px 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+
+.refugee-card:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-4px);
+  border-color: var(--gold);
+}
+
+.refugee-photo {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+  background: linear-gradient(135deg, var(--blue-light), var(--red));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  color: white;
+  overflow: hidden;
+  border: 3px solid rgba(255,255,255,0.2);
+}
+
+.refugee-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.refugee-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.refugee-title {
+  font-size: 11px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.refugee-btns {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.btn-profile {
+  background: var(--red);
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 10px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-profile:hover { background: var(--red-dark); }
+
+.btn-share-sm {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font-size: 10px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-share-sm:hover { opacity: 0.85; }
+
+.refugees-counter {
+  background: rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 400px;
+  margin: 0 auto 30px;
+}
+
+.counter-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--gold);
+}
+
+.counter-label { color: rgba(255,255,255,0.7); font-size: 13px; }
+
+.progress-bar {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+  height: 8px;
+  margin: 12px 0 8px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  height: 100%;
+  border-radius: 10px;
+  transition: width 1s ease;
+}
+
+/* ===== PROGRAMME ===== */
+.programme { background: white; }
+
+.prog-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.prog-step {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 28px;
+  background: var(--gray);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.prog-step:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--red);
+  opacity: 0.3;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.prog-step h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.prog-step p { font-size: 13px; color: #666; line-height: 1.7; }
+
+/* ===== VIDEOS ===== */
+.videos { background: var(--gray); text-align: center; }
+
+.videos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.video-placeholder {
+  background: var(--dark);
+  border-radius: 12px;
+  aspect-ratio: 16/9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.video-placeholder:hover { transform: scale(1.02); }
+
+.video-play {
+  width: 60px; height: 60px;
+  background: rgba(200,16,46,0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.video-label { font-size: 13px; color: rgba(255,255,255,0.7); }
+
+/* ===== BENEVOLES ===== */
+.benevoles { background: linear-gradient(135deg, var(--blue), var(--dark)); color: white; text-align: center; }
+.benevoles .section-title { color: white; }
+.benevoles .section-subtitle { color: rgba(255,255,255,0.7); margin: 0 auto 40px; }
+
+.benev-form {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 500px;
+  margin: 0 auto;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.form-group { margin-bottom: 16px; text-align: left; }
+
+.form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(255,255,255,0.4); }
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: rgba(255,255,255,0.2);
+}
+
+.form-group select option { background: var(--dark); color: white; }
+
+.btn-submit {
+  width: 100%;
+  background: var(--red);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.btn-submit:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+/* ===== DONS ===== */
+.dons { background: white; text-align: center; }
+
+.don-amounts {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.don-btn {
+  background: var(--gray);
+  border: 2px solid transparent;
+  padding: 16px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.don-btn:hover, .don-btn.active {
+  background: var(--red);
+  color: white;
+  border-color: var(--red);
+  transform: translateY(-2px);
+}
+
+.don-desc {
+  font-size: 13px;
+  color: #888;
+  margin-top: 6px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+  display: block;
+}
+
+.don-impact {
+  background: var(--gray);
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  margin: 0 auto 30px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.7;
+}
+
+/* ===== CONTACT ===== */
+.contact { background: var(--gray); }
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) { .contact-grid { grid-template-columns: 1fr; } }
+
+.contact-info h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 24px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.contact-icon {
+  font-size: 20px;
+  width: 36px;
+  height: 36px;
+  background: var(--red);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-detail { font-size: 13px; color: #555; line-height: 1.6; }
+.contact-detail strong { color: var(--dark); display: block; margin-bottom: 2px; }
+
+.contact-form { background: white; border-radius: 16px; padding: 32px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+
+.contact-form h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+
+.cf-group { margin-bottom: 14px; }
+
+.cf-group input,
+.cf-group select,
+.cf-group textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  transition: all 0.2s;
+}
+
+.cf-group input:focus,
+.cf-group select:focus,
+.cf-group textarea:focus {
+  outline: none;
+  border-color: var(--red);
+}
+
+.cf-group textarea { height: 100px; resize: vertical; }
+
+.btn-contact {
+  width: 100%;
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 13px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-contact:hover { background: var(--blue-light); transform: translateY(-1px); }
+
+/* ===== SHARE BAR ===== */
+.share-bar {
+  background: var(--dark);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.share-label { color: rgba(255,255,255,0.7); font-size: 13px; }
+
+.share-fb {
+  background: #1877F2;
+  color: white;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.share-wa {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.share-fb:hover { opacity: 0.85; }
+.share-wa:hover { opacity: 0.85; }
+
+/* ===== FOOTER ===== */
+footer {
+  background: #0a0a1a;
+  color: rgba(255,255,255,0.6);
+  text-align: center;
+  padding: 30px 20px;
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+footer strong { color: white; }
+
+/* ===== MODAL ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal {
+  background: white;
+  border-radius: 16px;
+  max-width: 650px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.modal-header {
+  background: linear-gradient(135deg, var(--blue), var(--dark));
+  padding: 30px;
+  border-radius: 16px 16px 0 0;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.modal-photo {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--red), var(--gold));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: white;
+  flex-shrink: 0;
+  overflow: hidden;
+  border: 4px solid rgba(255,255,255,0.3);
+}
+
+.modal-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.modal-info { color: white; }
+
+.modal-info h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.modal-info .modal-role {
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.modal-info .modal-origin { font-size: 12px; color: rgba(255,255,255,0.7); }
+
+.modal-body { padding: 28px; }
+
+.modal-section { margin-bottom: 24px; }
+
+.modal-section h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--red);
+}
+
+.modal-section p { font-size: 13px; color: #555; line-height: 1.8; }
+
+.cv-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.cv-year {
+  color: var(--red);
+  font-weight: 700;
+  min-width: 50px;
+  font-size: 12px;
+}
+
+.cv-detail { color: #444; line-height: 1.5; }
+
+.modal-footer {
+  padding: 16px 28px 24px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-contact-rest {
+  flex: 1;
+  background: var(--blue);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-contact-rest:hover { background: var(--blue-light); }
+
+.btn-share-modal {
+  background: #25D366;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.btn-share-modal-fb {
+  background: #1877F2;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.modal-close:hover { background: rgba(255,255,255,0.4); }
+
+/* ===== ADMIN ===== */
+.admin-section {
+  background: #f0f0f0;
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 600px;
+  margin: 40px auto 0;
+  display: none;
+}
+
+.admin-section.active { display: block; }
+
+.admin-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--dark);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--dark);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 13px;
+  z-index: 3000;
+  transition: transform 0.3s;
+  border-left: 4px solid var(--gold);
+}
+
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .mission-grid, .team-grid, .prog-steps { grid-template-columns: 1fr 1fr; }
+  .refugees-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .benev-form { padding: 24px 20px; }
+}
+
+@media (max-width: 480px) {
+  .mission-grid, .team-grid, .prog-steps { grid-template-columns: 1fr; }
+  .don-amounts { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-badge">REST</div>
+    <div class="logo-text">Canadian Refugee Supportive Team</div>
+  </a>
+  <div class="nav-links">
+    <a href="#mission" data-fr="Mission" data-en="Mission">Mission</a>
+    <a href="#team" data-fr="Équipe" data-en="Team">Équipe</a>
+    <a href="#programme" data-fr="Programme" data-en="Program">Programme</a>
+    <a href="#refugies" data-fr="Réfugiés" data-en="Refugees">Réfugiés</a>
+    <a href="#videos" data-fr="Vidéos" data-en="Videos">Vidéos</a>
+    <a href="#benevoles" data-fr="Bénévolat" data-en="Volunteer">Bénévolat</a>
+    <a href="#dons" data-fr="Dons" data-en="Donate">Dons</a>
+    <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
+    <a href="#dons" class="nav-btn" data-fr="💛 Donner" data-en="💛 Donate">💛 Donner</a>
+    <button class="lang-toggle" onclick="toggleLang()">EN</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-maple">🍁</div>
+    <div class="hero-tag" data-fr="Organisme Fédéral Canadien · No 1783703-8" data-en="Federal Canadian Organization · No 1783703-8">Organisme Fédéral Canadien · No 1783703-8</div>
+    <h1 data-fr="Sauver des vies,<br><span>construire des avenirs</span>" data-en="Saving lives,<br><span>building futures</span>">Sauver des vies,<br><span>construire des avenirs</span></h1>
+    <p class="hero-subtitle" data-fr="Des réfugiés en danger en Ouganda vers une vie digne au Canada — formation, emploi, intégration." data-en="Refugees in danger in Uganda toward a dignified life in Canada — training, employment, integration.">Des réfugiés en danger en Ouganda vers une vie digne au Canada — formation, emploi, intégration.</p>
+    <p class="hero-corp">canadianrest.org</p>
+    <div class="hero-btns">
+      <a href="#refugies" class="btn-primary" data-fr="🌍 Voir les Réfugiés" data-en="🌍 See Refugees">🌍 Voir les Réfugiés</a>
+      <a href="#benevoles" class="btn-secondary" data-fr="🤝 Devenir Bénévole" data-en="🤝 Become a Volunteer">🤝 Devenir Bénévole</a>
+      <a href="#dons" class="btn-secondary" data-fr="💛 Faire un Don" data-en="💛 Make a Donation">💛 Faire un Don</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num" id="refugeeCount">0</span><span class="stat-label" data-fr="Réfugiés inscrits" data-en="Registered refugees">Réfugiés inscrits</span></div>
+      <div class="stat"><span class="stat-num">200</span><span class="stat-label" data-fr="Objectif 3 mois" data-en="3-month goal">Objectif 3 mois</span></div>
+      <div class="stat"><span class="stat-num">10</span><span class="stat-label" data-fr="Provinces & Territoires" data-en="Provinces & Territories">Provinces & Territoires</span></div>
+      <div class="stat"><span class="stat-num">2026</span><span class="stat-label" data-fr="Fondé" data-en="Founded">Fondé</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div class="section-tag" data-fr="Notre Mission" data-en="Our Mission">Notre Mission</div>
+  <h2 class="section-title" data-fr="Pourquoi <span>REST Canada</span> existe" data-en="Why <span>REST Canada</span> exists">Pourquoi <span>REST Canada</span> existe</h2>
+  <p class="section-subtitle" style="margin:0 auto 50px" data-fr="REST Canada est ouvert à toutes les opportunités d'emploi pour les réfugiés. Nos premiers projets: formation de préposés aux bénéficiaires et formation en langues française et anglaise." data-en="REST Canada is open to all employment opportunities for refugees. Our first projects: personal support worker training and French and English language training.">REST Canada est ouvert à toutes les opportunités d'emploi pour les réfugiés. Nos premiers projets: formation de préposés aux bénéficiaires et formation en langues française et anglaise.</p>
+
+  <!-- 3 CATEGORIES -->
+  <div style="max-width:1100px;margin:0 auto 50px;background:linear-gradient(135deg,#fff8f0,#fff);border-radius:16px;padding:32px;box-shadow:0 4px 20px rgba(200,16,46,0.08);border-left:6px solid var(--red)">
+    <h3 style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--dark);margin-bottom:24px;text-align:center" data-fr="🌍 Qui peut bénéficier de REST Canada?" data-en="🌍 Who can benefit from REST Canada?">🌍 Qui peut bénéficier de REST Canada?</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+
+      <div style="background:white;border-radius:12px;padding:24px;border-top:4px solid #C8102E;box-shadow:0 2px 12px rgba(0,0,0,0.06)">
+        <div style="font-size:36px;margin-bottom:12px">🚨</div>
+        <h4 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--dark);margin-bottom:10px" data-fr="Réfugiés en Danger Immédiat" data-en="Refugees in Immediate Danger">Réfugiés en Danger Immédiat</h4>
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px" data-fr="Persécutés et poursuivis par leurs persécuteurs même en Ouganda. Leur vie est en danger permanent." data-en="Persecuted and pursued by their persecutors even in Uganda. Their lives are in permanent danger.">Persécutés et poursuivis par leurs persécuteurs même en Ouganda. Leur vie est en danger permanent.</p>
+        <div style="background:#fff0f0;border-radius:8px;padding:12px;font-size:12px;color:var(--red);font-weight:600" data-fr="✅ REST garantit ~60% des frais de voyage" data-en="✅ REST guarantees ~60% of travel costs">✅ REST garantit ~60% des frais de voyage</div>
+      </div>
+
+      <div style="background:white;border-radius:12px;padding:24px;border-top:4px solid var(--blue);box-shadow:0 2px 12px rgba(0,0,0,0.06)">
+        <div style="font-size:36px;margin-bottom:12px">🎓</div>
+        <h4 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--dark);margin-bottom:10px" data-fr="Réfugiés Qualifiés / Scolarisés" data-en="Qualified / Educated Refugees">Réfugiés Qualifiés / Scolarisés</h4>
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px" data-fr="Réfugiés avec niveau scolaire ou intellectuel prêts à travailler dans divers domaines professionnels." data-en="Refugees with educational or intellectual background ready to work in various professional fields.">Réfugiés avec niveau scolaire ou intellectuel prêts à travailler dans divers domaines professionnels.</p>
+        <div style="background:#f0f4ff;border-radius:8px;padding:12px;font-size:12px;color:var(--blue);font-weight:600" data-fr="💼 Frais de voyage: charge de l'employeur — REST facilite la communication et fournit les documents" data-en="💼 Travel costs: employer's responsibility — REST facilitates communication and provides documents">💼 Frais de voyage: charge de l'employeur — REST facilite la communication et fournit les documents</div>
+      </div>
+
+      <div style="background:white;border-radius:12px;padding:24px;border-top:4px solid var(--gold);box-shadow:0 2px 12px rgba(0,0,0,0.06)">
+        <div style="font-size:36px;margin-bottom:12px">💪</div>
+        <h4 style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--dark);margin-bottom:10px" data-fr="Travailleurs Manuels" data-en="Manual Workers">Travailleurs Manuels</h4>
+        <p style="font-size:13px;color:#555;line-height:1.7;margin-bottom:12px" data-fr="Réfugiés avec la force physique prêts à travailler en manufacture, mines, construction au Canada." data-en="Refugees with physical strength ready to work in manufacturing, mines, construction in Canada.">Réfugiés avec la force physique prêts à travailler en manufacture, mines, construction au Canada.</p>
+        <div style="background:#fffbf0;border-radius:8px;padding:12px;font-size:12px;color:#b8860b;font-weight:600" data-fr="🏗️ Frais de voyage: charge de l'employeur — REST facilite la communication et fournit les documents" data-en="🏗️ Travel costs: employer's responsibility — REST facilitates communication and provides documents">🏗️ Frais de voyage: charge de l'employeur — REST facilite la communication et fournit les documents</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="mission-grid">
+    <div class="mission-card">
+      <div class="mission-icon">🏥</div>
+      <h3 data-fr="Formation PAB (1er Projet)" data-en="PSW Training (1st Project)">Formation PAB (1er Projet)</h3>
+      <p data-fr="Notre premier projet: former des infirmières réfugiées comme préposées aux bénéficiaires selon les standards canadiens — 6 mois à 1 an. Certificat REST délivré." data-en="Our first project: training refugee nurses as personal support workers according to Canadian standards — 6 months to 1 year. REST certificate issued.">Notre premier projet: former des infirmières réfugiées comme préposées aux bénéficiaires selon les standards canadiens — 6 mois à 1 an. Certificat REST délivré.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">🗣️</div>
+      <h3 data-fr="Formation en Langues (1er Projet)" data-en="Language Training (1st Project)">Formation en Langues (1er Projet)</h3>
+      <p data-fr="Notre premier projet inclut aussi la formation en français et en anglais — essentielle pour l'intégration et l'emploi au Canada." data-en="Our first project also includes French and English language training — essential for integration and employment in Canada.">Notre premier projet inclut aussi la formation en français et en anglais — essentielle pour l'intégration et l'emploi au Canada.</p>
+      <a href="https://joulecal7-source.github.io/English-world-/Lesson3.html" target="_blank" style="display:inline-block;margin-top:14px;background:#003087;color:white;padding:9px 18px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;" data-fr="📚 Commencer l'anglais →" data-en="📚 Start English →">📚 Commencer l'anglais →</a>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">🌐</div>
+      <h3 data-fr="Toutes Opportunités" data-en="All Opportunities">Toutes Opportunités</h3>
+      <p data-fr="REST est ouvert à toutes les opportunités d'emploi: santé, éducation, manufacture, mines, construction, services — nous facilitons le lien entre réfugiés et employeurs canadiens." data-en="REST is open to all job opportunities: health, education, manufacturing, mines, construction, services — we facilitate the link between refugees and Canadian employers.">REST est ouvert à toutes les opportunités d'emploi: santé, éducation, manufacture, mines, construction, services — nous facilitons le lien entre réfugiés et employeurs canadiens.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mission-icon">📄</div>
+      <h3 data-fr="Documents & Communication" data-en="Documents & Communication">Documents & Communication</h3>
+      <p data-fr="Pour tous les réfugiés: REST facilite la communication avec les employeurs et fournit tous les documents nécessaires pour le processus d'immigration et d'emploi." data-en="For all refugees: REST facilitates communication with employers and provides all necessary documents for the immigration and employment process.">Pour tous les réfugiés: REST facilite la communication avec les employeurs et fournit tous les documents nécessaires pour le processus d'immigration et d'emploi.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="section-tag" data-fr="Notre Équipe" data-en="Our Team">Notre Équipe</div>
+  <h2 class="section-title" data-fr="Les <span>fondateurs</span> de REST Canada" data-en="The <span>founders</span> of REST Canada">Les <span>fondateurs</span> de REST Canada</h2>
+  <p class="section-subtitle" style="margin:0 auto 50px" data-fr="Une équipe de professionnels canadiens, certains ayant eux-mêmes vécu l'expérience du réfugié." data-en="A team of Canadian professionals, some of whom have themselves lived the refugee experience.">Une équipe de professionnels canadiens, certains ayant eux-mêmes vécu l'expérience du réfugié.</p>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">JM</div>
+      <h3>Joule Musuwa</h3>
+      <div class="team-role" data-fr="Président" data-en="President">Président</div>
+      <div class="team-skills" data-fr="Infirmier auxiliaire · Préposé aux bénéficiaires · Enseignant · 8 ans en santé canadienne" data-en="Licensed Practical Nurse · Personal Support Worker · Teacher · 8 years in Canadian healthcare">Infirmier auxiliaire · Préposé aux bénéficiaires · Enseignant · 8 ans en santé canadienne</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">FB</div>
+      <h3>Fatoumata Bah</h3>
+      <div class="team-role" data-fr="Secrétaire" data-en="Secretary">Secrétaire</div>
+      <div class="team-skills" data-fr="B.Sc. Éducation Spécialisée · Éducatrice spécialisée · Accompagnement des personnes vulnérables" data-en="B.Sc. Special Education · Specialized Educator · Support for vulnerable persons">B.Sc. Éducation Spécialisée · Éducatrice spécialisée · Accompagnement des personnes vulnérables</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">ME</div>
+      <h3>Majdouline El Hafed</h3>
+      <div class="team-role" data-fr="Conseillère" data-en="Advisor">Conseillère</div>
+      <div class="team-skills" data-fr="B.Sc. Santé Publique · Infirmière auxiliaire · Santé communautaire et prévention" data-en="B.Sc. Public Health · Licensed Practical Nurse · Community health and prevention">B.Sc. Santé Publique · Infirmière auxiliaire · Santé communautaire et prévention</div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">NR</div>
+      <h3>Neema Rosine</h3>
+      <div class="team-role" data-fr="Trésorière" data-en="Treasurer">Trésorière</div>
+      <div class="team-skills" data-fr="Chef d'équipe · Gestion opérationnelle et logistique · Coordination" data-en="Team Leader · Operational and logistics management · Coordination">Chef d'équipe · Gestion opérationnelle et logistique · Coordination</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME -->
+<section class="programme" id="programme">
+  <div class="section-tag" data-fr="Notre Programme" data-en="Our Program">Notre Programme</div>
+  <h2 class="section-title" data-fr="Comment nous <span>sauvons des vies</span>" data-en="How we <span>save lives</span>">Comment nous <span>sauvons des vies</span></h2>
+  <p class="section-subtitle" data-fr="Un processus en 4 étapes, de l'Ouganda jusqu'à l'emploi au Canada." data-en="A 4-step process, from Uganda to employment in Canada.">Un processus en 4 étapes, de l'Ouganda jusqu'à l'emploi au Canada.</p>
+  <div class="prog-steps">
+    <div class="prog-step">
+      <div class="step-num">01</div>
+      <h3 data-fr="🇺🇬 Sélection en Ouganda" data-en="🇺🇬 Selection in Uganda">🇺🇬 Sélection en Ouganda</h3>
+      <p data-fr="Nous identifions des infirmières réfugiées en danger, parlant français ou anglais, avec la volonté de travailler au Canada comme préposées aux bénéficiaires." data-en="We identify refugee nurses in danger, speaking French or English, willing to work in Canada as personal support workers.">Nous identifions des infirmières réfugiées en danger, parlant français ou anglais, avec la volonté de travailler au Canada comme préposées aux bénéficiaires.</p>
+    </div>
+    <div class="prog-step">
+      <div class="step-num">02</div>
+      <h3 data-fr="🏥 Formation PAB" data-en="🏥 PSW Training">🏥 Formation PAB</h3>
+      <p data-fr="Formation intensive de 6 mois à 1 an en Ouganda selon les standards canadiens: soins, hygiène, communication, protocoles. Certificat REST-Canada délivré." data-en="Intensive 6-month to 1-year training in Uganda according to Canadian standards: care, hygiene, communication, protocols. REST-Canada certificate issued.">Formation intensive de 6 mois à 1 an en Ouganda selon les standards canadiens: soins, hygiène, communication, protocoles. Certificat REST-Canada délivré.</p>
+    </div>
+    <div class="prog-step">
+      <div class="step-num">03</div>
+      <h3 data-fr="🤝 Emploi Confirmé" data-en="🤝 Confirmed Job">🤝 Emploi Confirmé</h3>
+      <p data-fr="REST contacte les CIUSSS, hôpitaux et résidences des régions éloignées. L'employeur confirme le poste avant le départ. Visa et documents organisés." data-en="REST contacts CIUSSS, hospitals and residences in remote regions. Employer confirms the position before departure. Visa and documents organized.">REST contacte les CIUSSS, hôpitaux et résidences des régions éloignées. L'employeur confirme le poste avant le départ. Visa et documents organisés.</p>
+    </div>
+    <div class="prog-step">
+      <div class="step-num">04</div>
+      <h3 data-fr="🍁 Accueil au Canada" data-en="🍁 Welcome to Canada">🍁 Accueil au Canada</h3>
+      <p data-fr="Accueil à l'aéroport, hébergement temporaire, démarches administratives, intégration communautaire via églises et bénévoles. Suivi pendant 1 an." data-en="Airport welcome, temporary housing, administrative procedures, community integration via churches and volunteers. 1-year follow-up.">Accueil à l'aéroport, hébergement temporaire, démarches administratives, intégration communautaire via églises et bénévoles. Suivi pendant 1 an.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REFUGIES -->
+<section class="refugees" id="refugies">
+  <div class="section-tag" data-fr="Nos Réfugiés" data-en="Our Refugees">Nos Réfugiés</div>
+  <h2 class="section-title" data-fr="Des vies à <span style='color:var(--gold)'>sauver</span>" data-en="Lives to <span style='color:var(--gold)'>save</span>">Des vies à <span style="color:var(--gold)">sauver</span></h2>
+  <p class="section-subtitle" data-fr="Cliquez sur un profil pour voir l'histoire et le CV du réfugié. Les employeurs peuvent contacter REST directement." data-en="Click on a profile to see the refugee's story and CV. Employers can contact REST directly.">Cliquez sur un profil pour voir l'histoire et le CV du réfugié. Les employeurs peuvent contacter REST directement.</p>
+
+  <div class="refugees-counter">
+    <div class="counter-num" id="counterNum">0</div>
+    <div class="counter-label" data-fr="réfugiés inscrits sur 200" data-en="refugees registered out of 200">réfugiés inscrits sur 200</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div style="font-size:11px;color:rgba(255,255,255,0.5)" data-fr="Objectif: 200 réfugiés en 3 mois" data-en="Goal: 200 refugees in 3 months">Objectif: 200 réfugiés en 3 mois</div>
+  </div>
+
+  <div class="refugees-grid" id="refugeesGrid">
+    <!-- Populated by JS -->
+  </div>
+
+  <!-- ADMIN PANEL -->
+  <div style="text-align:center;margin-top:20px">
+    <button onclick="toggleAdmin()" style="background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.2);padding:8px 16px;border-radius:6px;cursor:pointer;font-size:11px;font-family:'DM Sans',sans-serif;">
+      🔐 <span data-fr="Admin" data-en="Admin">Admin</span>
+    </button>
+  </div>
+
+  <div id="adminPanel" style="max-width:600px;margin:20px auto 0;display:none;background:rgba(255,255,255,0.05);border-radius:12px;padding:24px;border:1px solid rgba(255,255,255,0.1)">
+    <div id="adminLogin">
+      <p style="color:rgba(255,255,255,0.8);margin-bottom:12px;font-size:13px" data-fr="Mot de passe administrateur:" data-en="Administrator password:">Mot de passe administrateur:</p>
+      <input type="password" id="adminPwd" placeholder="••••••••" style="padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.1);color:white;font-family:'DM Sans',sans-serif;width:200px;margin-right:10px">
+      <button onclick="checkAdmin()" style="background:var(--red);color:white;border:none;padding:10px 18px;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600" data-fr="Connexion" data-en="Login">Connexion</button>
+    </div>
+    <div id="adminForm" style="display:none">
+      <h3 style="color:white;font-family:'Playfair Display',serif;font-size:18px;margin-bottom:20px" data-fr="➕ Ajouter un Réfugié" data-en="➕ Add a Refugee">➕ Ajouter un Réfugié</h3>
+      <div style="display:grid;gap:12px">
+        <input type="text" id="rName" placeholder="Nom complet / Full name" style="padding:10px 14px;border-radius:6px;border:none;font-family:'DM Sans',sans-serif;font-size:13px">
+        <input type="text" id="rTitle" placeholder="Titre / Profession (ex: Infirmière / Nurse)" style="padding:10px 14px;border-radius:6px;border:none;font-family:'DM Sans',sans-serif;font-size:13px">
+        <input type="text" id="rOrigin" placeholder="Pays d'origine / Country of origin" style="padding:10px 14px;border-radius:6px;border:none;font-family:'DM Sans',sans-serif;font-size:13px">
+        <input type="text" id="rLang" placeholder="Langues / Languages (ex: Français, Anglais)" style="padding:10px 14px;border-radius:6px;border:none;font-family:'DM Sans',sans-serif;font-size:13px">
+        <textarea id="rStory" placeholder="Histoire personnelle / Personal story..." rows="3" style="padding:10px 14px;border-radius:6px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;resize:vertical"></textarea>
+        <textarea id="rCV" placeholder="CV / Expériences professionnelles / Work experience..." rows="4" style="padding:10px 14px;border-radius:6px;border:none;font-family:'DM Sans',sans-serif;font-size:13px;resize:vertical"></textarea>
+        <div style="display:flex;gap:10px;align-items:center">
+          <label style="color:rgba(255,255,255,0.8);font-size:12px;flex-shrink:0" data-fr="Photo (optionnel):" data-en="Photo (optional):">Photo (optionnel):</label>
+          <input type="file" id="rPhoto" accept="image/*" style="color:rgba(255,255,255,0.7);font-size:12px">
+        </div>
+        <button onclick="addRefugee()" style="background:var(--gold);color:var(--dark);border:none;padding:12px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif" data-fr="✅ Ajouter ce réfugié" data-en="✅ Add this refugee">✅ Ajouter ce réfugié</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section class="videos" id="videos">
+  <div class="section-tag" data-fr="Nos Actions" data-en="Our Actions">Nos Actions</div>
+  <h2 class="section-title" data-fr="Nos missions <span>sur le terrain</span>" data-en="Our <span>field missions</span>">Nos missions <span>sur le terrain</span></h2>
+  <p class="section-subtitle" style="margin:0 auto 50px" data-fr="Découvrez nos formations en Ouganda et l'accueil de réfugiés au Canada." data-en="Discover our training in Uganda and the welcoming of refugees in Canada.">Découvrez nos formations en Ouganda et l'accueil de réfugiés au Canada.</p>
+  <div class="videos-grid">
+    <div class="video-placeholder" onclick="openVideo('https://www.youtube.com/watch?v=placeholder1')">
+      <div class="video-play">▶</div>
+      <div class="video-label" data-fr="Mission Formation — Ouganda 2026" data-en="Training Mission — Uganda 2026">Mission Formation — Ouganda 2026</div>
+    </div>
+    <div class="video-placeholder" onclick="openVideo('https://www.youtube.com/watch?v=placeholder2')">
+      <div class="video-play">▶</div>
+      <div class="video-label" data-fr="Accueil de réfugiés — Canada 2026" data-en="Welcoming refugees — Canada 2026">Accueil de réfugiés — Canada 2026</div>
+    </div>
+    <div class="video-placeholder" onclick="openVideo('https://www.youtube.com/watch?v=placeholder3')">
+      <div class="video-play">▶</div>
+      <div class="video-label" data-fr="Témoignages de réfugiés" data-en="Refugee testimonials">Témoignages de réfugiés</div>
+    </div>
+  </div>
+  <p style="text-align:center;margin-top:24px;font-size:13px;color:#888" data-fr="Les vidéos seront ajoutées progressivement au fur et à mesure des missions." data-en="Videos will be added progressively as missions take place.">Les vidéos seront ajoutées progressivement au fur et à mesure des missions.</p>
+</section>
+
+<!-- BENEVOLES -->
+<section class="benevoles" id="benevoles">
+  <div class="section-tag" data-fr="Rejoignez-nous" data-en="Join Us">Rejoignez-nous</div>
+  <h2 class="section-title" data-fr="Devenez <span style='color:var(--gold)'>Bénévole</span>" data-en="Become a <span style='color:var(--gold)'>Volunteer</span>">Devenez <span style="color:var(--gold)">Bénévole</span></h2>
+  <p class="section-subtitle" data-fr="Infirmiers, éducateurs, traducteurs, accompagnateurs — votre expertise peut changer une vie." data-en="Nurses, educators, translators, supporters — your expertise can change a life.">Infirmiers, éducateurs, traducteurs, accompagnateurs — votre expertise peut changer une vie.</p>
+  <div class="benev-form">
+    <div class="form-group">
+      <label data-fr="Nom complet" data-en="Full name">Nom complet</label>
+      <input type="text" id="bName" placeholder="Votre nom / Your name">
+    </div>
+    <div class="form-group">
+      <label data-fr="Email" data-en="Email">Email</label>
+      <input type="email" id="bEmail" placeholder="votre@email.com">
+    </div>
+    <div class="form-group">
+      <label data-fr="Téléphone" data-en="Phone">Téléphone</label>
+      <input type="tel" id="bPhone" placeholder="(514) 000-0000">
+    </div>
+    <div class="form-group">
+      <label data-fr="Votre profession" data-en="Your profession">Votre profession</label>
+      <select id="bProfession">
+        <option value="" data-fr="Choisir..." data-en="Choose...">Choisir...</option>
+        <option value="nurse" data-fr="Infirmier(e) / PAB" data-en="Nurse / PSW">Infirmier(e) / PAB</option>
+        <option value="edu" data-fr="Éducateur(trice)" data-en="Educator">Éducateur(trice)</option>
+        <option value="translator" data-fr="Traducteur(trice)" data-en="Translator">Traducteur(trice)</option>
+        <option value="driver" data-fr="Chauffeur / Transport" data-en="Driver / Transportation">Chauffeur / Transport</option>
+        <option value="admin" data-fr="Administration" data-en="Administration">Administration</option>
+        <option value="other" data-fr="Autre" data-en="Other">Autre</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label data-fr="Message (optionnel)" data-en="Message (optional)">Message (optionnel)</label>
+      <textarea id="bMessage" placeholder="Comment souhaitez-vous aider? / How would you like to help?" rows="3"></textarea>
+    </div>
+    <button class="btn-submit" onclick="submitVolunteer()" data-fr="🤝 S'inscrire comme Bénévole" data-en="🤝 Register as Volunteer">🤝 S'inscrire comme Bénévole</button>
+  </div>
+</section>
+
+<!-- DONS -->
+<section class="dons" id="dons">
+  <div class="section-tag" data-fr="Soutenez REST" data-en="Support REST">Soutenez REST</div>
+  <h2 class="section-title" data-fr="Votre don <span>sauve une vie</span>" data-en="Your donation <span>saves a life</span>">Votre don <span>sauve une vie</span></h2>
+  <p class="section-subtitle" style="margin:0 auto 40px" data-fr="La diaspora africaine couvre ~60% des frais. Votre contribution couvre le reste." data-en="The African diaspora covers ~60% of costs. Your contribution covers the rest.">La diaspora africaine couvre ~60% des frais. Votre contribution couvre le reste.</p>
+
+  <div class="don-amounts">
+    <button class="don-btn" onclick="selectDon(this, 25)">25$<span class="don-desc" data-fr="Formation d'un jour" data-en="One day of training">Formation d'un jour</span></button>
+    <button class="don-btn" onclick="selectDon(this, 100)">100$<span class="don-desc" data-fr="Documents de voyage" data-en="Travel documents">Documents de voyage</span></button>
+    <button class="don-btn active" onclick="selectDon(this, 500)">500$<span class="don-desc" data-fr="1 mois de formation" data-en="1 month of training">1 mois de formation</span></button>
+    <button class="don-btn" onclick="selectDon(this, 1500)">1500$<span class="don-desc" data-fr="Billet d'avion" data-en="Plane ticket">Billet d'avion</span></button>
+    <button class="don-btn" onclick="selectDon(this, 0)">💛<span class="don-desc" data-fr="Autre montant" data-en="Other amount">Autre montant</span></button>
+  </div>
+
+  <div class="don-impact">
+    <strong data-fr="💡 Impact de votre don" data-en="💡 Impact of your donation">💡 Impact de votre don</strong><br>
+    <span id="donImpact" data-fr="Avec 500$, vous financez 1 mois de formation complète pour un réfugié en Ouganda." data-en="With $500, you fund 1 month of complete training for a refugee in Uganda.">Avec 500$, vous financez 1 mois de formation complète pour un réfugié en Ouganda.</span>
+  </div>
+
+  <button class="btn-primary" onclick="donate()" style="font-size:16px;padding:16px 40px" data-fr="💛 Faire un Don Maintenant" data-en="💛 Donate Now">💛 Faire un Don Maintenant</button>
+  <p style="margin-top:16px;font-size:12px;color:#aaa" data-fr="Numéro d'entreprise ARC: 724566237 RC0001" data-en="CRA Business Number: 724566237 RC0001">Numéro d'entreprise ARC: 724566237 RC0001</p>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-tag" data-fr="Contactez-nous" data-en="Contact Us">Contactez-nous</div>
+  <h2 class="section-title" data-fr="Parlons de <span>votre partenariat</span>" data-en="Let's talk about <span>your partnership</span>">Parlons de <span>votre partenariat</span></h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3 data-fr="REST Canada" data-en="REST Canada">REST Canada</h3>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div class="contact-detail"><strong>Joule Musuwa</strong>260 115e Rue, Saint-Georges, QC G5Y 3G2</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div class="contact-detail"><strong data-fr="Téléphone" data-en="Phone">Téléphone</strong>(581) 673-7632</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div class="contact-detail"><strong>Email</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b8d2d7cdd4dddbd9d48ff8dfd5d9d1d496dbd7d5">[email&#160;protected]</a></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🌐</div>
+        <div class="contact-detail"><strong>Web</strong>canadianrest.org</div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">🏛️</div>
+        <div class="contact-detail"><strong data-fr="No Organisation" data-en="Corporation No">No Organisation</strong>1783703-8<br><strong>ARC/CRA</strong>724566237 RC0001</div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3 data-fr="Envoyer un message" data-en="Send a message">Envoyer un message</h3>
+      <div class="cf-group">
+        <input type="text" id="cName" placeholder="Nom / Name">
+      </div>
+      <div class="cf-group">
+        <input type="email" id="cEmail" placeholder="Email">
+      </div>
+      <div class="cf-group">
+        <select id="cType">
+          <option data-fr="Je suis un employeur" data-en="I am an employer">Je suis un employeur</option>
+          <option data-fr="Je veux faire un don" data-en="I want to donate">Je veux faire un don</option>
+          <option data-fr="Je veux être bénévole" data-en="I want to volunteer">Je veux être bénévole</option>
+          <option data-fr="Je suis un partenaire" data-en="I am a partner">Je suis un partenaire</option>
+          <option data-fr="Autre" data-en="Other">Autre</option>
+        </select>
+      </div>
+      <div class="cf-group">
+        <textarea id="cMessage" placeholder="Votre message / Your message..."></textarea>
+      </div>
+      <button class="btn-contact" onclick="sendContact()" data-fr="📨 Envoyer" data-en="📨 Send">📨 Envoyer</button>
+    </div>
+  </div>
+</section>
+
+<!-- SHARE BAR -->
+<div class="share-bar">
+  <span class="share-label" data-fr="Partagez REST Canada:" data-en="Share REST Canada:">Partagez REST Canada:</span>
+  <button class="share-fb" onclick="shareFacebook()">📘 Facebook</button>
+  <button class="share-wa" onclick="shareWhatsApp()">💬 WhatsApp</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <strong>REST Canada — Canadian Refugee Supportive Team</strong><br>
+  Équipe Canadienne pour le Soutien aux Réfugiés<br>
+  Corporation No: 1783703-8 · ARC/CRA: 724566237 RC0001<br>
+  <span data-fr="Constitué le 8 avril 2026 · Tous droits réservés" data-en="Incorporated April 8, 2026 · All rights reserved">Constitué le 8 avril 2026 · Tous droits réservés</span>
+</footer>
+
+<!-- MODAL PROFIL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModalBtn()">✕</button>
+    <div class="modal-header">
+      <div class="modal-photo" id="modalPhoto">JD</div>
+      <div class="modal-info">
+        <h2 id="modalName">Nom</h2>
+        <div class="modal-role" id="modalRole">Rôle</div>
+        <div class="modal-origin" id="modalOrigin">Pays d'origine</div>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <h3 data-fr="📖 Histoire Personnelle" data-en="📖 Personal Story">📖 Histoire Personnelle</h3>
+        <p id="modalStory"></p>
+      </div>
+      <div class="modal-section">
+        <h3 data-fr="📋 Curriculum Vitae" data-en="📋 Curriculum Vitae">📋 Curriculum Vitae</h3>
+        <div id="modalCV"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-contact-rest" onclick="contactREST()" data-fr="📨 Contacter REST pour ce réfugié" data-en="📨 Contact REST for this refugee">📨 Contacter REST pour ce réfugié</button>
+      <button class="btn-share-modal" onclick="shareProfileWhatsApp()" title="WhatsApp">💬</button>
+      <button class="btn-share-modal-fb" onclick="shareProfileFacebook()" title="Facebook">📘</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// ===== LANGUAGE =====
+let currentLang = 'fr';
+
+function toggleLang() {
+  currentLang = currentLang === 'fr' ? 'en' : 'fr';
+  document.querySelector('.lang-toggle').textContent = currentLang === 'fr' ? 'EN' : 'FR';
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    const text = el.getAttribute('data-' + currentLang);
+    if (text) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = text;
+      } else if (el.innerHTML.includes('<')) {
+        el.innerHTML = text;
+      } else {
+        el.textContent = text;
+      }
+    }
+  });
+}
+
+// ===== REFUGEES DATA =====
+let refugees = JSON.parse(localStorage.getItem('rest_refugees') || '[]');
+
+function saveRefugees() {
+  localStorage.setItem('rest_refugees', JSON.stringify(refugees));
+}
+
+function updateCounter() {
+  const count = refugees.length;
+  document.getElementById('counterNum').textContent = count;
+  document.getElementById('refugeeCount').textContent = count;
+  const pct = Math.min((count / 200) * 100, 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function renderRefugees() {
+  const grid = document.getElementById('refugeesGrid');
+  grid.innerHTML = '';
+  if (refugees.length === 0) {
+    grid.innerHTML = '<p style="color:rgba(255,255,255,0.4);font-size:13px;grid-column:1/-1;text-align:center;padding:40px">Les profils seront ajoutés progressivement.<br>Profiles will be added progressively.</p>';
+    return;
+  }
+  refugees.forEach((r, i) => {
+    const initials = r.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    const card = document.createElement('div');
+    card.className = 'refugee-card';
+    card.innerHTML = `
+      <div class="refugee-photo" onclick="openProfile(${i})">
+        ${r.photo ? `<img src="${r.photo}" alt="${r.name}">` : initials}
+      </div>
+      <div class="refugee-name" onclick="openProfile(${i})">${r.name}</div>
+      <div class="refugee-title">${r.title}</div>
+      <div class="refugee-btns">
+        <button class="btn-profile" onclick="openProfile(${i})">Profil</button>
+        <button class="btn-share-sm" onclick="shareRefugeeWA(${i})">💬</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+  updateCounter();
+}
+
+// ===== PROFILE MODAL =====
+let currentRefugee = null;
+
+function openProfile(i) {
+  const r = refugees[i];
+  currentRefugee = r;
+  document.getElementById('modalName').textContent = r.name;
+  document.getElementById('modalRole').textContent = r.title;
+  document.getElementById('modalOrigin').textContent = r.origin || '';
+  document.getElementById('modalStory').textContent = r.story || '';
+  document.getElementById('modalCV').innerHTML = `<p style="font-size:13px;color:#555;line-height:1.8;white-space:pre-line">${r.cv || ''}</p>`;
+  const photo = document.getElementById('modalPhoto');
+  if (r.photo) {
+    photo.innerHTML = `<img src="${r.photo}" alt="${r.name}">`;
+  } else {
+    photo.textContent = r.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+  }
+  document.getElementById('modalOverlay').classList.add('active');
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modalOverlay')) {
+    document.getElementById('modalOverlay').classList.remove('active');
+  }
+}
+
+function closeModalBtn() {
+  document.getElementById('modalOverlay').classList.remove('active');
+}
+
+function contactREST() {
+  if (!currentRefugee) return;
+  const msg = `Bonjour REST Canada,\n\nJe suis intéressé(e) par le profil de ${currentRefugee.name} (${currentRefugee.title}).\n\nMerci de me contacter.`;
+  window.location.href = `mailto:joulecal7@gmail.com?subject=Intérêt pour le profil de ${currentRefugee.name}&body=${encodeURIComponent(msg)}`;
+}
+
+function shareProfileWhatsApp() {
+  if (!currentRefugee) return;
+  const text = `Découvrez le profil de ${currentRefugee.name} (${currentRefugee.title}) sur REST Canada — Refugee Supportive Team. Cette personne cherche un emploi au Canada. Contactez REST: joulecal7@gmail.com | canadianrest.org`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+function shareProfileFacebook() {
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+}
+
+function shareRefugeeWA(i) {
+  const r = refugees[i];
+  const text = `Profil REST Canada: ${r.name} — ${r.title}. Cette personne cherche un emploi au Canada. Contactez REST: joulecal7@gmail.com`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+// ===== ADMIN =====
+let adminUnlocked = false;
+
+function toggleAdmin() {
+  const panel = document.getElementById('adminPanel');
+  panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+}
+
+function checkAdmin() {
+  const pwd = document.getElementById('adminPwd').value;
+  if (pwd === 'REST2026admin') {
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminForm').style.display = 'block';
+    adminUnlocked = true;
+    showToast('✅ Accès administrateur accordé');
+  } else {
+    showToast('❌ Mot de passe incorrect');
+  }
+}
+
+function addRefugee() {
+  const name = document.getElementById('rName').value.trim();
+  const title = document.getElementById('rTitle').value.trim();
+  const origin = document.getElementById('rOrigin').value.trim();
+  const lang = document.getElementById('rLang').value.trim();
+  const story = document.getElementById('rStory').value.trim();
+  const cv = document.getElementById('rCV').value.trim();
+  const photoFile = document.getElementById('rPhoto').files[0];
+
+  if (!name || !title) {
+    showToast('⚠️ Nom et titre obligatoires');
+    return;
+  }
+
+  const processRefugee = (photoData) => {
+    refugees.push({ name, title, origin, lang, story, cv, photo: photoData || null });
+    saveRefugees();
+    renderRefugees();
+    // Reset form
+    ['rName','rTitle','rOrigin','rLang','rStory','rCV'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('rPhoto').value = '';
+    showToast(`✅ ${name} ajouté(e) avec succès!`);
+  };
+
+  if (photoFile) {
+    const reader = new FileReader();
+    reader.onload = e => processRefugee(e.target.result);
+    reader.readAsDataURL(photoFile);
+  } else {
+    processRefugee(null);
+  }
+}
+
+// ===== SHARE =====
+function shareFacebook() {
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+}
+
+function shareWhatsApp() {
+  const text = `🍁 REST Canada — Aidez des réfugiés en danger à trouver un emploi au Canada!\nDes infirmières réfugiées en Ouganda cherchent une vie digne au Canada.\n🌍 Visitez: ${window.location.href}\n📧 Contact: joulecal7@gmail.com`;
+  window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+}
+
+// ===== DONS =====
+let selectedAmount = 500;
+
+function selectDon(btn, amount) {
+  document.querySelectorAll('.don-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  selectedAmount = amount;
+  const impacts = {
+    25: {fr: 'Avec 25$, vous financez une journée de formation pour un réfugié.', en: 'With $25, you fund one day of training for a refugee.'},
+    100: {fr: 'Avec 100$, vous couvrez les frais de documents de voyage.', en: 'With $100, you cover travel document costs.'},
+    500: {fr: 'Avec 500$, vous financez 1 mois de formation complète pour un réfugié.', en: 'With $500, you fund 1 month of complete training for a refugee.'},
+    1500: {fr: 'Avec 1500$, vous payez le billet d\'avion d\'un réfugié vers sa nouvelle vie.', en: 'With $1500, you pay the plane ticket for a refugee toward their new life.'},
+    0: {fr: 'Entrez votre montant. Chaque dollar compte pour sauver une vie.', en: 'Enter your amount. Every dollar counts to save a life.'}
+  };
+  const impact = impacts[amount] || impacts[0];
+  document.getElementById('donImpact').textContent = impact[currentLang];
+}
+
+function donate() {
+  window.location.href = `mailto:joulecal7@gmail.com?subject=Don REST Canada — ${selectedAmount || 'Montant personnalisé'}$&body=Bonjour,\n\nJe souhaite faire un don de ${selectedAmount || '???'}$ à REST Canada.\n\nMerci de me contacter pour les détails du paiement.\n\nCordialement`;
+}
+
+// ===== VOLUNTEER =====
+function submitVolunteer() {
+  const name = document.getElementById('bName').value.trim();
+  const email = document.getElementById('bEmail').value.trim();
+  const phone = document.getElementById('bPhone').value.trim();
+  const profession = document.getElementById('bProfession').value;
+  const message = document.getElementById('bMessage').value.trim();
+
+  if (!name || !email) {
+    showToast('⚠️ Nom et email obligatoires');
+    return;
+  }
+
+  const body = `Nouvelle inscription bénévole REST Canada:\n\nNom: ${name}\nEmail: ${email}\nTéléphone: ${phone}\nProfession: ${profession}\nMessage: ${message}`;
+  window.location.href = `mailto:joulecal7@gmail.com?subject=Bénévole REST Canada — ${name}&body=${encodeURIComponent(body)}`;
+  showToast('✅ Merci! Nous vous contacterons bientôt.');
+}
+
+// ===== CONTACT =====
+function sendContact() {
+  const name = document.getElementById('cName').value.trim();
+  const email = document.getElementById('cEmail').value.trim();
+  const type = document.getElementById('cType').value;
+  const message = document.getElementById('cMessage').value.trim();
+
+  if (!name || !email || !message) {
+    showToast('⚠️ Veuillez remplir tous les champs');
+    return;
+  }
+
+  const body = `De: ${name} (${email})\nType: ${type}\n\nMessage:\n${message}`;
+  window.location.href = `mailto:joulecal7@gmail.com?subject=${encodeURIComponent(type)} — REST Canada&body=${encodeURIComponent(body)}`;
+  showToast('✅ Message envoyé! Merci.');
+}
+
+// ===== VIDEO =====
+function openVideo(url) {
+  showToast('📹 Les vidéos seront disponibles bientôt / Videos coming soon');
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ===== COUNTER ANIMATION =====
+function animateCounter(el, target) {
+  let current = 0;
+  const step = Math.ceil(target / 30);
+  const interval = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = current;
+    if (current >= target) clearInterval(interval);
+  }, 50);
+}
+
+// ===== INIT =====
+window.addEventListener('load', () => {
+  renderRefugees();
+  updateCounter();
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEven
