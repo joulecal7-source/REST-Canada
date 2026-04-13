@@ -1135,7 +1135,7 @@ footer strong { color: white; }
     </div>
   </div>
   <!-- BOUTON LANGUE - toujours visible -->
-  <button onclick="toggleLang()" id="langBtn" style="background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.4);padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;flex-shrink:0;">EN</button>
+  <button onclick="toggleLang()" id="langBtn" data-fr="EN" data-en="FR" style="background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.4);padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;flex-shrink:0;">EN</button>
 </nav>
 
 <!-- HERO -->
@@ -1521,7 +1521,12 @@ let currentLang = 'fr';
 
 function toggleLang() {
   currentLang = currentLang === 'fr' ? 'en' : 'fr';
-  document.querySelectorAll('.lang-toggle, #langBtn').forEach(btn => btn.textContent = currentLang === 'fr' ? 'EN' : 'FR');
+  const btnLabel = currentLang === 'fr' ? 'EN' : 'FR';
+  // Mettre à jour tous les boutons langue
+  const langBtn = document.getElementById('langBtn');
+  if (langBtn) langBtn.textContent = btnLabel;
+  document.querySelectorAll('.lang-toggle').forEach(btn => btn.textContent = btnLabel);
+  // Traduire tous les éléments
   document.querySelectorAll('[data-fr]').forEach(el => {
     const text = el.getAttribute('data-' + currentLang);
     if (text) {
