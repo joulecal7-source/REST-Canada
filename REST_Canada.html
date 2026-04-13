@@ -1666,7 +1666,7 @@ function renderRefugees() {
 let currentRefugee = null;
 
 function openProfile(i) {
-  const r = refugees[i];
+  const r = getAllRefugees() ;
   currentRefugee = r;
   document.getElementById('modalName').textContent = r.name;
   document.getElementById('modalRole').textContent = r.title;
