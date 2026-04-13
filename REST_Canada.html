@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -1107,6 +1106,8 @@ footer strong { color: white; }
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .nav-links { display: none; }
+  .lang-mobile { display: block !important; }
+  .lang-desktop { display: none !important; }
   .mission-grid, .team-grid, .prog-steps { grid-template-columns: 1fr 1fr; }
   .refugees-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
   .benev-form { padding: 24px 20px; }
@@ -1131,6 +1132,8 @@ footer strong { color: white; }
       <div style="font-size:7.5px;color:rgba(255,255,255,0.50);letter-spacing:1px;line-height:1.3;">Refugee Supportive Team</div>
     </div>
   </a>
+  <!-- Bouton langue mobile - toujours visible -->
+  <button class="lang-toggle lang-mobile" onclick="toggleLang()">EN</button>
   <div class="nav-links">
     <a href="#mission" data-fr="Mission" data-en="Mission">Mission</a>
     <a href="#team" data-fr="Équipe" data-en="Team">Équipe</a>
@@ -1141,7 +1144,7 @@ footer strong { color: white; }
     <a href="#dons" data-fr="Dons" data-en="Donate">Dons</a>
     <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
     <a href="#dons" class="nav-btn" data-fr="💛 Donner" data-en="💛 Donate">💛 Donner</a>
-    <button class="lang-toggle" onclick="toggleLang()">EN</button>
+    <button class="lang-toggle lang-desktop" onclick="toggleLang()">EN</button>
   </div>
 </nav>
 
@@ -1719,7 +1722,10 @@ function selectDon(btn, amount) {
 }
 
 function donate() {
-  window.location.href = `mailto:joulecal7@gmail.com?subject=Don REST Canada — ${selectedAmount || 'Montant personnalisé'}$&body=Bonjour,\n\nJe souhaite faire un don de ${selectedAmount || '???'}$ à REST Canada.\n\nMerci de me contacter pour les détails du paiement.\n\nCordialement`;
+  const amount = selectedAmount || '???';
+  const text = `💛 *Don REST Canada*\n\nJe souhaite faire un don de *${amount}$* à REST Canada.\n\nMerci de me contacter pour les détails du paiement.\n\n🌍 canadianrest.org`;
+  window.open('https://wa.me/15816737632?text=' + encodeURIComponent(text), '_blank');
+  showToast('✅ Merci! Nous vous contacterons pour le paiement.');
 }
 
 // ===== VOLUNTEER =====
@@ -1735,9 +1741,9 @@ function submitVolunteer() {
     return;
   }
 
-  const body = `Nouvelle inscription bénévole REST Canada:\n\nNom: ${name}\nEmail: ${email}\nTéléphone: ${phone}\nProfession: ${profession}\nMessage: ${message}`;
-  window.location.href = `mailto:joulecal7@gmail.com?subject=Bénévole REST Canada — ${name}&body=${encodeURIComponent(body)}`;
-  showToast('✅ Merci! Nous vous contacterons bientôt.');
+  const text = `🤝 *Nouvelle inscription bénévole REST Canada*\n\n👤 Nom: ${name}\n📧 Email: ${email}\n📞 Téléphone: ${phone}\n💼 Profession: ${profession}\n💬 Message: ${message || 'Aucun message'}\n\n🌍 canadianrest.org`;
+  window.open('https://wa.me/15816737632?text=' + encodeURIComponent(text), '_blank');
+  showToast('✅ Merci! Votre inscription est envoyée via WhatsApp!');
 }
 
 // ===== CONTACT =====
@@ -1752,9 +1758,9 @@ function sendContact() {
     return;
   }
 
-  const body = `De: ${name} (${email})\nType: ${type}\n\nMessage:\n${message}`;
-  window.location.href = `mailto:joulecal7@gmail.com?subject=${encodeURIComponent(type)} — REST Canada&body=${encodeURIComponent(body)}`;
-  showToast('✅ Message envoyé! Merci.');
+  const text = `📩 *Message REST Canada*\n\n👤 De: ${name}\n📧 Email: ${email}\n📋 Type: ${type}\n\n💬 Message:\n${message}\n\n🌍 canadianrest.org`;
+  window.open('https://wa.me/15816737632?text=' + encodeURIComponent(text), '_blank');
+  showToast('✅ Message envoyé via WhatsApp! Merci.');
 }
 
 // ===== VIDEO =====
