@@ -99,6 +99,7 @@ nav {
 
 .nav-btn:hover { background: var(--red-dark) !important; }
 
+
 .lang-toggle {
   background: rgba(255,255,255,0.2);
   color: white;
@@ -1106,8 +1107,8 @@ footer strong { color: white; }
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .nav-links { display: none; }
-  .lang-mobile { display: block !important; }
-  .lang-desktop { display: none !important; }
+  
+  
   .mission-grid, .team-grid, .prog-steps { grid-template-columns: 1fr 1fr; }
   .refugees-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
   .benev-form { padding: 24px 20px; }
@@ -1130,10 +1131,9 @@ footer strong { color: white; }
       <div style="font-family:Georgia,serif;font-size:13px;font-weight:700;color:#D4A017;letter-spacing:6px;line-height:1.2;">CANADA</div>
       <div style="font-size:8.5px;color:rgba(255,255,255,0.85);letter-spacing:0.3px;line-height:1.4;margin-top:3px;">Équipe Canadienne pour le soutien aux réfugiés</div>
       <div style="font-size:7.5px;color:rgba(255,255,255,0.50);letter-spacing:1px;line-height:1.3;">Refugee Supportive Team</div>
+    <button class="lang-toggle" onclick="toggleLang()" style="margin-left:10px;flex-shrink:0;">EN</button>
     </div>
   </a>
-  <!-- Bouton langue mobile - toujours visible -->
-  <button class="lang-toggle lang-mobile" onclick="toggleLang()">EN</button>
   <div class="nav-links">
     <a href="#mission" data-fr="Mission" data-en="Mission">Mission</a>
     <a href="#team" data-fr="Équipe" data-en="Team">Équipe</a>
@@ -1144,7 +1144,7 @@ footer strong { color: white; }
     <a href="#dons" data-fr="Dons" data-en="Donate">Dons</a>
     <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
     <a href="#dons" class="nav-btn" data-fr="💛 Donner" data-en="💛 Donate">💛 Donner</a>
-    <button class="lang-toggle lang-desktop" onclick="toggleLang()">EN</button>
+    <button class="lang-toggle" onclick="toggleLang()">EN</button>
   </div>
 </nav>
 
@@ -1531,7 +1531,7 @@ let currentLang = 'fr';
 
 function toggleLang() {
   currentLang = currentLang === 'fr' ? 'en' : 'fr';
-  document.querySelector('.lang-toggle').textContent = currentLang === 'fr' ? 'EN' : 'FR';
+  document.querySelectorAll('.lang-toggle').forEach(btn => btn.textContent = currentLang === 'fr' ? 'EN' : 'FR');
   document.querySelectorAll('[data-fr]').forEach(el => {
     const text = el.getAttribute('data-' + currentLang);
     if (text) {
