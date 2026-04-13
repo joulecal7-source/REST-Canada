@@ -1135,21 +1135,21 @@ footer strong { color: white; }
     </div>
   </div>
   <!-- BOUTON LANGUE - toujours visible -->
-  <button onclick="toggleLang()" id="langBtn" style="background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.4);padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;flex-shrink:0;">EN</button>
+  <button onclick="toggleLang()" id="langBtn" style="background:rgba(255,255,255,0.2);color:white;border:1px solid rgba(255,255,255,0.4);padding:6px 14px;border-radius:4px;cursor:pointer;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;flex-shrink:0;">FR</button>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-content">
     <div class="hero-maple">🍁</div>
-    <div class="hero-tag" data-fr="Organisme Fédéral Canadien · No 1783703-8" data-en="Federal Canadian Organization · No 1783703-8">Organisme Fédéral Canadien · No 1783703-8</div>
+    <div class="hero-tag" data-fr="Organisme Fédéral Canadien · No 1783703-8" data-en="Federal Canadian Organization · No 1783703-8">Federal Canadian Organization · No 1783703-8</div>
     <h1 data-fr="Sauver des vies,<br><span>construire des avenirs</span>" data-en="Saving lives,<br><span>building futures</span>">Sauver des vies,<br><span>construire des avenirs</span></h1>
     <p class="hero-subtitle" data-fr="Des réfugiés en danger en Ouganda vers une vie digne au Canada — formation, emploi, intégration." data-en="Refugees in danger in Uganda toward a dignified life in Canada — training, employment, integration.">Des réfugiés en danger en Ouganda vers une vie digne au Canada — formation, emploi, intégration.</p>
     <p class="hero-corp">canadianrest.org</p>
     <div class="hero-btns">
-      <a href="#refugies" class="btn-primary" data-fr="🌍 Voir les Réfugiés" data-en="🌍 See Refugees">🌍 Voir les Réfugiés</a>
-      <a href="#benevoles" class="btn-secondary" data-fr="🤝 Devenir Bénévole" data-en="🤝 Become a Volunteer">🤝 Devenir Bénévole</a>
-      <a href="#dons" class="btn-secondary" data-fr="💛 Faire un Don" data-en="💛 Make a Donation">💛 Faire un Don</a>
+      <a href="#refugies" class="btn-primary" data-fr="🌍 Voir les Réfugiés" data-en="🌍 See Refugees">🌍 See Refugees</a>
+      <a href="#benevoles" class="btn-secondary" data-fr="🤝 Devenir Bénévole" data-en="🤝 Become a Volunteer">🤝 Become a Volunteer</a>
+      <a href="#dons" class="btn-secondary" data-fr="💛 Faire un Don" data-en="💛 Make a Donation">💛 Make a Donation</a>
     </div>
     <div class="hero-stats">
       <div class="stat"><span class="stat-num" id="refugeeCount">0</span><span class="stat-label" data-fr="Réfugiés inscrits" data-en="Registered refugees">Réfugiés inscrits</span></div>
@@ -1162,7 +1162,7 @@ footer strong { color: white; }
 
 <!-- MISSION -->
 <section class="mission" id="mission">
-  <div class="section-tag" data-fr="Notre Mission" data-en="Our Mission">Notre Mission</div>
+  <div class="section-tag" data-fr="Notre Mission" data-en="Our Mission">Our Mission</div>
   <h2 class="section-title" data-fr="Pourquoi <span>REST Canada</span> existe" data-en="Why <span>REST Canada</span> exists">Pourquoi <span>REST Canada</span> existe</h2>
   <p class="section-subtitle" style="margin:0 auto 50px" data-fr="REST Canada est ouvert à toutes les opportunités d'emploi pour les réfugiés. Nos premiers projets: formation de préposés aux bénéficiaires et formation en langues française et anglaise." data-en="REST Canada is open to all employment opportunities for refugees. Our first projects: personal support worker training and French and English language training.">REST Canada est ouvert à toutes les opportunités d'emploi pour les réfugiés. Nos premiers projets: formation de préposés aux bénéficiaires et formation en langues française et anglaise.</p>
 
@@ -1222,7 +1222,7 @@ footer strong { color: white; }
 
 <!-- TEAM -->
 <section class="team" id="team">
-  <div class="section-tag" data-fr="Notre Équipe" data-en="Our Team">Notre Équipe</div>
+  <div class="section-tag" data-fr="Notre Équipe" data-en="Our Team">Our Team</div>
   <h2 class="section-title" data-fr="Les <span>fondateurs</span> de REST Canada" data-en="The <span>founders</span> of REST Canada">Les <span>fondateurs</span> de REST Canada</h2>
   <p class="section-subtitle" style="margin:0 auto 50px" data-fr="Une équipe de professionnels canadiens, certains ayant eux-mêmes vécu l'expérience du réfugié." data-en="A team of Canadian professionals, some of whom have themselves lived the refugee experience.">Une équipe de professionnels canadiens, certains ayant eux-mêmes vécu l'expérience du réfugié.</p>
   <div class="team-grid">
@@ -1517,7 +1517,7 @@ footer strong { color: white; }
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ===== LANGUAGE =====
-let currentLang = 'fr';
+let currentLang = 'en';
 
 function toggleLang() {
   currentLang = currentLang === 'fr' ? 'en' : 'fr';
@@ -1784,9 +1784,21 @@ function animateCounter(el, target) {
 window.addEventListener('load', () => {
   renderRefugees();
   updateCounter();
+  // Appliquer langue anglaise au démarrage
+  document.querySelectorAll('[data-en]').forEach(el => {
+    if (el.id === 'langBtn') return;
+    const text = el.getAttribute('data-en');
+    if (text) {
+      if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+        el.placeholder = text;
+      } else if (el.innerHTML.includes('<')) {
+        el.innerHTML = text;
+      } else {
+        el.textContent = text;
+      }
+    }
+  });
   // Smooth scroll
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEven
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', function(e) {
       e.preventDefault();
